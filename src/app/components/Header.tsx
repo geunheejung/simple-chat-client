@@ -1,5 +1,6 @@
 import { auth, signOut } from '@/auth';
 import Link from 'next/link';
+import Notification from './Notification';
 
 export default async function Header() {
   const session = await auth();
@@ -13,7 +14,10 @@ export default async function Header() {
             await signOut({ redirect: true });
           }}
         >
-          <button type="submit">Sign Out</button>
+          <>
+            <button type="submit">Sign Out</button>
+            <Notification />
+          </>
         </form>
       ) : (
         <>
