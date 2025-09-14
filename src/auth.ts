@@ -2,9 +2,10 @@
 import NextAuth, { DefaultSession } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { fetchSignIn } from "./app/lib/http";
-import { AxiosError } from "axios";
  
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth } = NextAuth((req, res) => {
+  console.log(req)
+  return {
   secret: process.env.AUTH_SECRET || '',
   providers: [
     Credentials({
@@ -38,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: 'jwt',
   },  
+}
 })
 
 

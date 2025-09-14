@@ -39,6 +39,11 @@ export const fetchSignUp = ({ email, password, name }: FetchSignUpRequest) => ax
     
 
     type SignInResponseType = UserData | null;
-export const fetchSignIn = async ({ email, password }: { email: string; password: string; }) => await axiosInstnace.post<ApiResponse<SignInResponseType>>(API_ROUTES.AUTH.SIGN_IN, { 
-  email, password
-});
+export const fetchSignIn = async ({ email, password }: { email: string; password: string; }) => {
+  const response = await axiosInstnace.post<ApiResponse<SignInResponseType>>(API_ROUTES.AUTH.SIGN_IN, { 
+    email, password
+  })
+
+  console.log('response',response)
+  return response;
+};
